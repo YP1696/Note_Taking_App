@@ -1,0 +1,27 @@
+<div>
+    <mat-card>
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <mat-icon aria-hidden="false" aria-label="Example add icon">add</mat-icon>
+                <select [(ngModel)]="selectedColor" (change)="onColorSelected()">
+                    <option *ngFor="let color of colorData" [value]="color.value">{{ color.name }}</option>
+                </select>
+            </div>
+            <div>
+                <mat-icon aria-hidden="false" aria-label="Example settings icon">settings</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example close icon" mat-dialog-close>close</mat-icon>
+            </div>
+        </div>
+        <div>
+            <quill-editor [(ngModel)]="service.text"></quill-editor>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <button mat-raised-button style="margin: 10px;" (click)="toggleMicrophone()">
+                    <mat-icon>{{ isMicrophoneMuted ? 'mic_off' : 'mic' }}</mat-icon>
+                </button>
+                <div>
+                    <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

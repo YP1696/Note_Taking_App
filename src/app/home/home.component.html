@@ -1,0 +1,36 @@
+<div>
+    <mat-card class="main-card">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <mat-icon aria-hidden="false" aria-label="Example add icon" (click)="openAddNoteDialog()">add</mat-icon>
+            </div>
+            <div>
+                <mat-icon aria-hidden="false" aria-label="Example settings icon" (click)="openSettingDialog()">settings</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example close icon">close</mat-icon>
+            </div>
+        </div>
+        <mat-card-content class="title-card">
+            <mat-card-title>
+                Sticky Notes
+            </mat-card-title>
+            <select [(ngModel)]="selectedColor">
+                <option *ngFor="let color of colorData" [value]="color.value">{{ color.name }}</option>
+            </select>
+            <div style="display: flex;">
+                <input class="input" matInput placeholder="Search" id="searchInput" (input)="filterData()">
+                <mat-icon class="icon" style="background-color: gainsboro;" aria-hidden="false" aria-label="Example search icon" id="searchIcon">search</mat-icon>
+            </div>
+        </mat-card-content>
+        <div *ngFor="let item of filteredData" (click)="openData(item)">
+            <mat-card class="list-card" [style.background-color]="selectedColor">
+                <div>
+                    <p class="note-content" [innerHTML]="sanitizeHtml(item)"></p>
+                </div>
+                <div class="icons-container">
+                    <button mat-raised-button><mat-icon (click)="editNote(item)">edit</mat-icon></button>
+                    <button mat-raised-button><mat-icon (click)="deleteNote(item)">delete</mat-icon></button>
+                </div>
+            </mat-card>
+        </div>
+    </mat-card>
+</div>

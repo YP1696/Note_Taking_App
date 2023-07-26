@@ -1,0 +1,41 @@
+<div>
+    <mat-toolbar style="display: flex; justify-content: space-between;">
+        <div style="display: flex; border: 0px; gap : 25px;">
+            <button mat-icon-button class="example-icon">
+                <mat-icon class="icon">keyboard_backspace</mat-icon>
+            </button>
+            <span>Settings</span>
+        </div>
+        <div>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                <mat-icon class="icon">clear</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <hr>
+    <div style="display: flex; gap: 20px;">
+        <div>
+            <img style="height: 50px;" src="../../assets/profile-icon-9.png" alt="Noting to show">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+            <span>User Name </span>
+            <span>Email Address</span>
+        </div>
+    </div>
+    <!-- <div *ngFor="let color of arrayColors">
+        <div [style.background-color]="color"><span>color div</span></div>
+    </div> -->
+    <hr>
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+        <h3>Help & Feedback</h3>
+        <span>All caught up!</span>
+        <div style="display: flex; justify-content: space-around;">
+            <button style="width: 30%;" mat-raised-button color="primary">Sync Now</button>
+            <button style="width: 30%;" mat-raised-button color="primary">SignOut</button>
+        </div>
+    </div>
+    <!-- <div *ngFor="let color of arrayColors">
+        <button (click)="onColorSelect(color)">{{color}}</button>
+    </div> -->
+
+</div>

@@ -28,6 +28,7 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.service.init();
     const storedData = localStorage.getItem('micData');
     this.data = storedData ? JSON.parse(storedData) : []; 
   }

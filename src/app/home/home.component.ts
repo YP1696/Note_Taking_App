@@ -32,11 +32,13 @@ export class HomeComponent implements OnInit {
     }
    }
    colorData: any[] = [
-    { value: 'rgb(172 165 217)', name: 'SkyBlue' },
-    { value: 'rgb(251 246 251', name: 'White' },
+    { value: 'rgb(172 165 217)', name: 'Lavender Mist' },
     { value: 'rgb(255,245,0)', name: 'Yellow' },
-    { value: 'rgb(236,64,64)', name: 'Pink' },
-    { value: 'rgb(139 134 136)', name: 'grey' }
+    { value: 'rgb(236,64,64)', name: 'Crimson' },
+    { value: 'rgb(139 134 136)', name: 'Slate Gray' },
+    { value: '#FFB7B2', name: 'Pink'},
+    { value: '#C7CEEA', name: 'Pale Cornflower Blue'},
+    { value: '#FFDAC1', name: 'Peachy Nude'},
   ];
 
   ngOnInit(): void {
@@ -102,10 +104,11 @@ export class HomeComponent implements OnInit {
   }
   
   editNote(item: any): void {
-    const dialogRef = this.Dialog.open(EditComponent, {
+    const dialogRef = this.Dialog.open(MicComponent, {
       width: '500px',
-      data: item
+      data: {item}
     });
+    console.log(item);
 
     dialogRef.afterClosed().subscribe((updatedData: any) => {
       if (updatedData) {

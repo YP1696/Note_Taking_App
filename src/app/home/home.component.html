@@ -13,18 +13,18 @@
             <mat-card-title>
                 Sticky Notes
             </mat-card-title>
-            <select [(ngModel)]="selectedColor">
+            <!-- <select [(ngModel)]="selectedColor">
                 <option *ngFor="let color of colorData" [value]="color.value">{{ color.name }}</option>
-            </select>
+            </select> -->
             <div style="display: flex;">
                 <input class="input" matInput placeholder="Search" id="searchInput" (input)="filterData()">
                 <mat-icon class="icon" style="background-color: gainsboro;" aria-hidden="false" aria-label="Example search icon" id="searchIcon">search</mat-icon>
             </div>
         </mat-card-content>
         <div *ngFor="let item of filteredData" (click)="openData(item)">
-            <mat-card class="list-card" [style.background-color]="selectedColor">
+            <mat-card class="list-card" [style.background-color]="item.color">
                 <div>
-                    <p class="note-content" [innerHTML]="sanitizeHtml(item)"></p>
+                    <p class="note-content" [innerHTML]="sanitizeHtml(item.micData)"></p>
                 </div>
                 <div class="icons-container">
                     <button mat-raised-button><mat-icon (click)="editNote(item)">edit</mat-icon></button>

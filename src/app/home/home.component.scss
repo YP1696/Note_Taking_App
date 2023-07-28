@@ -54,3 +54,9 @@
     padding: 0px 0px;
   }
   
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(150, 150, 150);
+  }

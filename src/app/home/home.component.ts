@@ -103,12 +103,13 @@ export class HomeComponent implements OnInit {
     console.log(this.filteredData);
   }
   
-  editNote(item: any): void {
+  editNote(item: any ): void {
+    const index = this.filteredData.indexOf(item);
     const dialogRef = this.Dialog.open(MicComponent, {
       width: '500px',
-      data: {item}
+      data: {item , index}
     });
-    console.log(item);
+    // console.log(item , index);
 
     dialogRef.afterClosed().subscribe((updatedData: any) => {
       if (updatedData) {

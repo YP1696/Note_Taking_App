@@ -25,6 +25,7 @@ export class MicComponent implements OnInit {
     { value: '#C7CEEA', name: 'Pale Cornflower Blue'},
     { value: '#FFDAC1', name: 'Peachy Nude'},
   ];
+  selectedIndex: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -35,6 +36,7 @@ export class MicComponent implements OnInit {
     private backgroundColor: BackgroundService
   ) {
     this.service.init();
+    this.selectedData = data.item;
     this.updatedContent = this.data.content;
   }
   toggleMicrophone(): void {
@@ -53,6 +55,8 @@ export class MicComponent implements OnInit {
   ngOnInit(): void {
     this.service.text= this.data.item.micData
     this.selectedColor = this.data.item.color
+    this.selectedIndex = this.data.index
+    console.log(this.selectedIndex);
     console.log(this.data);
     const storedData = localStorage.getItem('micData');
     this.data = storedData ? JSON.parse(storedData) : [];
@@ -76,6 +80,8 @@ export class MicComponent implements OnInit {
   save(): void {
     const micData = this.service.text;
     const selectedColor = this.selectedColor;
+    const index = this.selectedIndex;
+    console.log(index);
     this.backgroundColor.setSelectedColor(this.selectedColor);
 
     const storedData = localStorage.getItem('micData');
@@ -83,6 +89,7 @@ export class MicComponent implements OnInit {
     const newDataItem = {
       micData: micData,
       color: selectedColor,
+      index : index,
     };
 
     if (this.selectedData) {
@@ -103,6 +110,6 @@ export class MicComponent implements OnInit {
     // this.selectedData = null;
     this.data = [...data];
     this.service.stop();
-    location.reload();
+    // location.reload();
   }
 }

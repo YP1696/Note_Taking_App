@@ -16,6 +16,8 @@ export class MicComponent implements OnInit {
   isMicrophoneMuted: boolean = true;
   selectedColor: string = '';
   updatedContent: string = '';
+  isEditMode: boolean = false;
+
   colorData: any[] = [
     { value: 'rgb(172 165 217)', name: 'Lavender Mist' },
     { value: 'rgb(255,245,0)', name: 'Yellow' },
@@ -40,6 +42,15 @@ export class MicComponent implements OnInit {
     this.updatedContent = this.data.content;
   }
   toggleMicrophone(): void {
+    this.isEditMode = !this.isEditMode;
+
+    if (this.isEditMode) {
+      this.update();
+    } else {
+      this.save();
+    }
+  }
+  toggleButton(): void {
     this.isMicrophoneMuted = !this.isMicrophoneMuted;
 
     if (this.isMicrophoneMuted) {
@@ -53,13 +64,19 @@ export class MicComponent implements OnInit {
     this.backgroundColor.setSelectedColor(this.selectedColor);
   }
   ngOnInit(): void {
-    this.service.text= this.data.item.micData
+    this.service.text = this.data.item.micData
     this.selectedColor = this.data.item.color
     this.selectedIndex = this.data.index
     console.log(this.selectedIndex);
     console.log(this.data);
     const storedData = localStorage.getItem('micData');
     this.data = storedData ? JSON.parse(storedData) : [];
+    // if (this.data && this.data.item && this.data.index !== undefined) {
+    //   this.isEditMode = true;
+    //   this.updatedContent = this.data.item.content;
+    // }
+    this.isEditMode = this.data?.isEdited || false;
+
   }
   services = {
     text: localStorage.getItem('editorContent'),
@@ -97,6 +114,7 @@ export class MicComponent implements OnInit {
 
       if (index !== -1) {
         data[index].micData = micData;
+        console.log('micData: ', micData);
         data[index].color = selectedColor;
       }
     } else {
@@ -104,12 +122,16 @@ export class MicComponent implements OnInit {
     }
 
     localStorage.setItem('micData', JSON.stringify(data));
-    const updatedData = { ...this.data, content: this.updatedContent };
+    const updatedData = { ...this.data, content: micData };
     console.log(updatedData);
+    this.dialogRef.close(updatedData);
     this.service.text = '';
     // this.selectedData = null;
     this.data = [...data];
     this.service.stop();
     // location.reload();
+  }
+  update(){
+    this.dialogRef.close(this.updatedContent);
   }
 }

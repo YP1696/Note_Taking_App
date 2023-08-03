@@ -21,7 +21,7 @@
                 <mat-icon class="icon" style="background-color: gainsboro;" aria-hidden="false" aria-label="Example search icon" id="searchIcon">search</mat-icon>
             </div>
         </mat-card-content>
-        <div *ngFor="let item of filteredData" (click)="openData(item)">
+        <div *ngFor="let item of filteredData" (click)="editNote(item)">
             <mat-card class="list-card" [style.background-color]="item.color">
                 <div>
                     <p class="note-content" [innerHTML]="sanitizeHtml(item.micData)"></p>
